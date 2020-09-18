@@ -1,16 +1,16 @@
-FROM python:3-alpine
+FROM python:3.8-slim-buster
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY requirements.txt /usr/src/app/
+COPY requirements.txt /app/
 
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /usr/src/app
 
 EXPOSE 8080
 
-ENTRYPOINT ["python3"]
+ENTRYPOINT ["python"]
 
-CMD ["-m", "swagger_server"]
+CMD ["app.py"]
